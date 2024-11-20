@@ -1,7 +1,7 @@
 import { expect } from '@wdio/globals'
 import LoginPage from '../pageobjects/Hiroklogin.page.js'
 import InventoryPage from '../pageobjects/Hirokoinventory.page.js'
-import YourCartPage from '../pageobjects/ShoppingCart.js'
+import DropDownMenu from '../pageobjects/dropdownMenu.js'
 
 
 describe('login positive stan_sec', () => {
@@ -35,16 +35,16 @@ describe('hamburger menu and shopping cart', () => {
 
 describe('test Your Cart Page', () => {
     it('All items link goes back to inventory page', async () => {
-        await YourCartPage.testclickAllItemsLink('standard_user', 'secret_sauce');
+        await DropDownMenu.testclickAllItemsLink('standard_user', 'secret_sauce');
     })
     it('Continue shopping button go back to inventory page', async () => {
-        await YourCartPage.testContinueShoppingbutton('standard_user', 'secret_sauce');
+        await DropDownMenu.testContinueShoppingbutton('standard_user', 'secret_sauce');
     })
     it('Checkout button goes to checkout', async () => {
-        await YourCartPage.testCheckoutbutton('standard_user', 'secret_sauce');
+        await DropDownMenu.testCheckoutbutton('standard_user', 'secret_sauce');
     })
     it('Testing remove button to remove item', async () => {
-        await YourCartPage.testRemovebutton('standard_user', 'secret_sauce');
+        await DropDownMenu.testRemovebutton('standard_user', 'secret_sauce');
     })
 
 })

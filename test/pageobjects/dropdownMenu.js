@@ -1,10 +1,9 @@
 import { $ } from '@wdio/globals'
-import Page from './Hirokopage.js';
-import LoginPage from './Hiroklogin.page.js';
-import InventoryPage from './Hirokoinventory.page.js';
+import Base from './base.js';
+import LaungDisplay from './launguagesDisplay.js';
 
 
-class YourCartPage extends Page {
+class DropDownMenu extends Base {
     get hamburgerMenu() {
         return $('#react-burger-menu-btn');
     }
@@ -109,4 +108,4 @@ async testRemovebutton(username, password) {
      }
 
 }
-export default new YourCartPage();
+export default new DropDownMenu();
