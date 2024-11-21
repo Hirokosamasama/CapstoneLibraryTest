@@ -1,11 +1,11 @@
 import { $ } from '@wdio/globals'
-import Base from './base.js';
-import LibraryInfo from './libraryInfo.js';
+import Base from '../pageobjects/base.js';
+// import LibraryInfo from '../pageobjects/libraryInfo.js';
 import { browser } from '@wdio/globals';
 /**
  * sub page containing specific selectors and methods for a specific page
  */
-class LanguagesDisplay extends Base {
+class LanguagesDisplay {
     /**
      * define selectors using getter methods
      */

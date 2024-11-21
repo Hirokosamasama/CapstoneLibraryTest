@@ -1,5 +1,5 @@
 import { $, browser } from '@wdio/globals'
-import Base from '..pageobjects/base.js';
+import Base from '../pageobjects/base.js';
 import LanguagesDisplay from './languagesDisplay.js';
 
 class LibraryInfo extends Base {
