@@ -1,5 +1,5 @@
 import { $, browser } from '@wdio/globals'
-import Base from './base.js';
+import Base from '..pageobjects/base.js';
 import LanguagesDisplay from './languagesDisplay.js';
 
 class LibraryInfo extends Base {
@@ -23,16 +23,21 @@ class LibraryInfo extends Base {
     }
     
     get artCenterPassesLink () {
-    return $('=FAQs'); 
+    return $('a[href="https://oremlibrary.org/general-reference/nacpasses/"]'); 
     }
     
     get bookGroupSetsLink () {
-    return $('=Book Group Sets');
+    return $$('a[href="/bookgroup"]');
     }
     
     get helpAndHowTosLink () {
-    return $('=Help & How Tos');
+    return $('a[href="/howto"]');
     }
+
+    get interlibraryLoanLink () {
+    return $('a[href="/ill"]');
+    }
+
     
     async testLibraryInfoMenu() {
         await this.open();
@@ -49,6 +54,40 @@ class LibraryInfo extends Base {
         await this.faqsLink.click();
         expect(browser).toHaveUrl('https://library.orem.gov/libraryfaq')
     }
+
+    async testArtCenterPassesLink() {
+        await this.open();
+        await expect(this.libraryHeaderLogo).toBeExisting();
+        await this.libraryInfoMenu.click();
+        await this.artCenterPassesLink.click();
+        expect(browser).toHaveUrl('https://oremlibrary.org/general-reference/nacpasses/')
+    }
+
+   /* async testBookGroupSetsLink() {
+        await this.open();
+        await expect(this.libraryHeaderLogo).toBeExisting();
+        await this.libraryInfoMenu.click();
+        await this.bookGroupSetsLink.click();
+        expect(browser).toHaveUrl('https://library.orem.gov/bookgroup')
+    }
+
+    async testHelpAndHowTosLink() {
+        await this.open();
+        await expect(this.libraryHeaderLogo).toBeExisting();
+        await this.libraryInfoMenu.click();
+        await this.helpAndHowTosLink.click();
+        expect(browser).toHaveUrl('https://library.orem.gov/howto')
+    }
+
+    async testInterlibraryLoanLink() {
+        await this.open();
+        await expect(this.libraryHeaderLogo).toBeExisting();
+        await this.libraryInfoMenu.click();
+        await this.interlibraryLoanLink.click();
+        expect(browser).toHaveUrl('https://library.orem.gov/ill')
+    }*/
+
+
   
 
     
