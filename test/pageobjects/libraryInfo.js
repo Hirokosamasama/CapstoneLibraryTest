@@ -38,7 +38,77 @@ class LibraryInfo extends Base {
     return $('a[href="/ill"]');
     }
 
+    get searchButton (){
+    return $('#horizontal-search-box-submit-text');
+    }
     
+    get searchBox (){
+    return $('#lookfor');
+    }
+
+    get keywordBox(){
+    return $('#searchIndex');
+    }
+
+    get signinButton(){
+    return $('#login-button-label');
+    }
+
+    get signinBoxLabel(){
+    return $('#myModalLabel');
+    }
+    
+    get signinButtonClick(){
+    return $('#loginFormSubmit')
+    }
+
+    get signinErrorMessage(){
+    return $('#loginError');
+    }
+
+    get signInCloseButton(){
+    return $('[class="btn btn-default modalClose"]')
+    }
+
+    get hamburgerMenu(){
+    return $('#header-menu-dropdown')
+    }
+
+    get libraryCardLink(){
+    return $('a[href="https://library.orem.gov/MyAccount/Home"]')
+    }
+
+    get getALibraryCardButton(){
+    return $('img[alt="Get a Library Card"]')
+    }
+
+    get personLogo(){
+    return $('[class="fas fa-landmark fa-fw"]')
+    }
+
+    get libraryStaffLink(){
+    return $('[class="fas fa-landmark fa-fw"]')
+    }
+
+    get libraryStaffLink(){}
+
+    get libraryHomePageButton(){
+    return $('#home-page-home-button')
+    }
+
+    get staffDirectorySign(){
+    return $()
+    }
+
+    get inputCardNumber() {
+        return $('#username');//selector for username text field
+    }
+
+    get inputPinNumber() {
+        return $('#password');//selector for the password text field
+    }
+
+
     async testLibraryInfoMenu() {
         await this.open();
         await expect(this.libraryHeaderLogo).toBeExisting();
@@ -61,7 +131,75 @@ class LibraryInfo extends Base {
         await this.libraryInfoMenu.click();
         await this.artCenterPassesLink.click();
         expect(browser).toHaveUrl('https://oremlibrary.org/general-reference/nacpasses/')
+        //browser.back()
     }
+
+    async testHamburgerMenuDropdown(){
+        await this.open()
+        await expect(this.hamburgerMenu).toBeExisting();
+        await this.hamburgerMenu.click();
+        await expect(this.personLogo).toBeExisting();
+    }
+    
+    async testNegativeSignIn (cardnumber, pinnumber) {
+        await this.open()
+        await expect(this.signinBoxLabel).toBeExisting();
+        await this.signinButton.click();
+        await this.inputCardNumber.setValue(cardnumber);
+        await this.inputPinNumber.setValue(pinnumber);
+        await this.signinButtonClick.click();
+        await expect(this.signinErrorMessage).toHaveText(
+            expect.stringContaining('enter both Library Card '))
+    }
+
+    async testNegativeSignIn2 (cardnumber, pinnumber) {
+        await this.open()
+        await expect(this.signinBoxLabel).toBeExisting();
+        await this.signinButton.click();
+        await this.inputCardNumber.setValue(cardnumber);
+        await this.inputPinNumber.setValue(pinnumber);
+        await this.signinButtonClick.click();
+        await expect(this.signinErrorMessage).toHaveText(
+            expect.stringContaining('enter both Library Card '))
+    }
+
+    async testNegativeSignIn3 (cardnumber, pinnumber) {
+        await this.open()
+        await expect(this.signinBoxLabel).toBeExisting();
+        await this.signinButton.click();
+        await this.inputCardNumber.setValue(cardnumber);
+        await this.inputPinNumber.setValue(pinnumber);
+        await this.signinButtonClick.click();
+        await expect(this.signinErrorMessage).toHaveText(
+            expect.stringContaining('enter both Library Card '))
+    }
+
+    async testSignInCloseButton(){
+        await this.signInCloseButton.click();
+        await expect(this.libraryHeaderLogo).toBeExisting();
+    }
+
+    async testPositiveSignIn (cardnumber, pinnumber) {
+        await this.open()
+        await expect(this.signinBoxLabel).toBeExisting();
+        await this.signinButton.click();
+        await this.inputCardNumber.setValue(cardnumber);
+        await this.inputPinNumber.setValue(pinnumber);
+        await this.signinButtonClick.click();
+            expect(browser).toHaveUrl('https://library.orem.gov/MyAccount/Home');
+        browser.back();
+    }
+
+    async testSearchBox (){
+        await this.open()
+        await expect(this.signinBoxLabel).toBeExisting();
+        await this.searchBox.setValue('snowman');
+        await this.searchButton.click();
+        expect(browser).toHaveUrl('https://library.orem.gov/Union/Search?view=list&lookfor=snowman&searchIndex=Keyword&searchSource=local');
+
+    }
+
+   
 
    /* async testBookGroupSetsLink() {
         await this.open();

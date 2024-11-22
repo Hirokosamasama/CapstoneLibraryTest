@@ -13,7 +13,7 @@ class LanguagesDisplay {
         return $('#theme-selection-dropdown'); 
     }
 
-    get closeButton () {
+    get closeButtonLG () {
         return $('i[class="fas fa-times"]'); 
     }
 
@@ -37,7 +37,7 @@ class LanguagesDisplay {
         return $('#preferredLanguage option[value="es"]'); 
     }
 
-   /* async testLanguagesDisplayMenu() {
+   /* async testMenu() {
         await this.open();
         await expect(this.libraryHeaderLogo).toBeExisting();
         await expect(this.languagesDisplayMenu).toBeExisting();
@@ -45,8 +45,8 @@ class LanguagesDisplay {
         await expect(this.displaySettingLabel).toBeExisting();
     }
 
-    async testCloseButton() {
-        await this.closeButton.click();
+    async testLanguageDisplayCloseButton() {
+        await this.closeButtonLD.click();
         await expect(this.displaySettingLabel).not.toBeExisting();
     }*/
 
