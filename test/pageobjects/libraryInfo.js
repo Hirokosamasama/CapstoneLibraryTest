@@ -27,7 +27,7 @@ class LibraryInfo extends Base {
     }
     
     get bookGroupSetsLink () {
-    return $$('a[href="/bookgroup"]');
+    return $('a[href="/bookgroup"]');
     }
     
     get helpAndHowTosLink () {
