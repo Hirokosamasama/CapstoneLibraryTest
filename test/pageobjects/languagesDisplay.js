@@ -30,19 +30,19 @@ class LanguagesDisplay extends Base {
     }
 
     get optionLanguageEn () {
-        return $('#preferredLanguage option[value="en"]'); 
+        return $('option[value="en"]'); 
     }
     
     get optionLanguageEs () {
-        return $('#preferredLanguage option[value="es"]'); 
+        return $('option[value="es"]'); 
     }
 
     get optionLanguageEnSelected () {
-        return $('#preferredLanguage option[value="en"][selected="selected"]'); 
+        return $('option[value="en"][selected="selected"]'); 
     }
 
     get optionLanguageEsSelected () {
-        return $('#preferredLanguage option[value="es"][selected="selected"]'); 
+        return $('option[value="es"][selected="selected"]'); 
     }
 
     get updateDisplaySetting (){
@@ -61,14 +61,17 @@ class LanguagesDisplay extends Base {
     }
 
     async testLanguageDisplayDropdown(lang) {
-        let selector;
+        let selected;
+        let language;
         if (lang == 'es') {
-            selector = this.optionLanguageEsSelected;
+            selected = this.optionLanguageEsSelected;
+            language = this.optionLanguageEn;
         } else {
-            selector = this.optionLanguageEnSelected;
+            selected = this.optionLanguageEnSelected;
+            language = this.optionLanguageEs;
         }
-        await expect(selector).toBeExisting();
-        await this.optionLanguageEs.click();
+        await expect(selected).toBeExisting();
+        await language.click();
         await this.updateDisplaySetting.click();
     }
 
