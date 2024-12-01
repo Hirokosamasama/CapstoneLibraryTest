@@ -14,7 +14,7 @@ class LanguagesDisplay extends Base {
     }
 
     get closeButtonLD () {
-        return $('[class="btn btn-default modalClose"]'); 
+        return $('button[class="btn btn-default modalClose"]'); 
     }
 
     get displaySettingLabel () {
