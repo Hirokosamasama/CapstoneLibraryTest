@@ -20,5 +20,7 @@ describe('Language display English and Spanish test', () => {
 describe('Display Mode Dropdown Menu test', () => {
     it('Accessible Theme', async () => {
         await displayModeDropdown.testdisplaymodeDropdownAccessibleTheme();
+        await displayModeDropdown.testdisplaymodeDropdownDarkTheme();
+        await displayModeDropdown.testdisplaymodeDropdownDefault();
     })
 })
