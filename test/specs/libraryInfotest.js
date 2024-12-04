@@ -14,5 +14,11 @@ describe('Library Info menu functionality test', () => {
         await LibraryInfo.testInterlibraryLoanLink();
         await LibraryInfo.testlibraryCardsAccountLink();
         await LibraryInfo.testlibraryHallLink();
+       // await LibraryInfo.testmakerspaceLink();
+       //await LibraryInfo.testpERCLink();
+       //await LibraryInfo.testpoliciesLink();
+       //await LibraryInfo.testpurchaseRequestLink();
+       //await LibraryInfo.teststateLibraryBookLink();
+       //await LibraryInfo.testvolunteerLink();
     })
 })

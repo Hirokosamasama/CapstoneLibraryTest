@@ -45,6 +45,34 @@ class LibraryInfo extends Base {
         return $("//div[@id='library_info-menu']//a[@aria-label='Library Hall (opens in a new window)']")
     }
 
+    get makerspaceLink(){
+        return $('[aria-label="Makerspace (opens in a new window)"]')
+    }
+
+    get pERCLink(){
+        return $('[aria-label="PERC (opens in a new window)"]')
+    }
+
+    get policiesLink(){
+        return $('[aria-label="Policies (opens in a new window)"]')
+    }
+
+    get purchaseRequestsLink(){
+        return $('[aria-label="Purchase Requests (opens in a new window)"]')
+    }
+
+    get stateLibraryBookLink(){
+        return $('[aria-label="State Library Book (opens in a new window)"]')
+    }
+
+    get volunteerLink(){
+        return $('[aria-label="Volunteer (opens in a new window)"]')
+    }
+
+
+
+
+
     
 
     async testLibraryInfoMenu() {
@@ -113,14 +141,56 @@ class LibraryInfo extends Base {
         expect(browser).toHaveUrl('https://library.orem.gov/LibraryHall')
     }
 
+  /* async testmakerspaceLink() {
+        await this.open();
+        await expect(this.libraryHeaderLogo).toBeExisting();
+        await this.libraryInfoMenu.click();
+        await this.makerspaceLink.click();
+        expect(browser).toHaveUrl('https://library.orem.gov/makerspace')
+    }
+
+    async testpERCLink() {
+        await this.open();
+        await expect(this.libraryHeaderLogo).toBeExisting();
+        await this.libraryInfoMenu.click();
+        await this.pERCLink.click();
+        expect(browser).toHaveUrl('https://library.orem.gov/PERC')
+    }
+
+    async testpoliciesLink() {
+        await this.open();
+        await expect(this.libraryHeaderLogo).toBeExisting();
+        await this.libraryInfoMenu.click();
+        await this.policiesLink.click();
+        expect(browser).toHaveUrl('https://library.orem.gov/policy')
+    }
+
+    async testpurchaseRequestLink() {
+        await this.open();
+        await expect(this.libraryHeaderLogo).toBeExisting();
+        await this.libraryInfoMenu.click();
+        await this.purchaseRequestsLink.click();
+        expect(browser).toHaveUrl('https://library.orem.gov/purchaserequests')
+    }
+
+    async teststateLibraryBookLink() {
+        await this.open();
+        await expect(this.libraryHeaderLogo).toBeExisting();
+        await this.libraryInfoMenu.click();
+        await this.stateLibraryBookLink.click();
+        expect(browser).toHaveUrl('https://library.orem.gov/WebBuilder/WebResource?id=86')
+    }
+
+    async testvolunteerLink() {
+        await this.open();
+        await expect(this.libraryHeaderLogo).toBeExisting();
+        await this.libraryInfoMenu.click();
+        await this.volunteerLink.click();
+        expect(browser).toHaveUrl('https://library.orem.gov/volunteering')
+    }*/
 
 
 
-  
-
-    
-
-   
 
     
     open () {
