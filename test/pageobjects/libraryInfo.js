@@ -41,8 +41,8 @@ class LibraryInfo extends Base {
         return $('[aria-label="Library Cards & Accounts (opens in a new window)"]');
     }
 
-    get testlibraryHallLink(){
-        return $x("//div[@id='library_info-menu']//a[@aria-label='Library Hall (opens in a new window)']")
+    get libraryHallLink(){
+        return $("//div[@id='library_info-menu']//a[@aria-label='Library Hall (opens in a new window)']")
     }
 
     
@@ -68,7 +68,8 @@ class LibraryInfo extends Base {
         await expect(this.libraryHeaderLogo).toBeExisting();
         await this.libraryInfoMenu.click();
         await this.artCenterPassesLink.click();
-        expect(browser).toHaveUrl('https://oremlibrary.org/general-reference/nacpasses/')
+        expect(browser).toHaveUrl('https://oremlibrary.org/general-reference/nacpasses/');
+        browser.switchWindow('library.orem.gov');
     }
 
    
@@ -104,12 +105,12 @@ class LibraryInfo extends Base {
         expect(browser).toHaveUrl('https://library.orem.gov/librarycardsandaccounts')
     }
 
-    /*async testlibraryHallLink() {
+    async testlibraryHallLink() {
         await this.open();
         await expect(this.libraryHeaderLogo).toBeExisting();
         await this.libraryInfoMenu.click();
         await this.libraryHallLink.click();
-        expect(browser).toHaveUrl('https://library.orem.gov/LibraryHall')*/
+        expect(browser).toHaveUrl('https://library.orem.gov/LibraryHall')
     }
 
 

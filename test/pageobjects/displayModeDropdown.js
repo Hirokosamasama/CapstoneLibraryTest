@@ -21,13 +21,13 @@ class displayModeDropdown extends Base {
     }
 
     get displayModeDropdownDarkThemeselected (){
-        //return $('option[value="3"][selected="selected"]');
-        return $('#preferredTheme')
+        return $('option[value="3"][selected="selected"]');
+        //return $('#preferredTheme')
     }
 
     get displayModeDropdownDefaultselected (){
-        //return $('option[value="1"][selected="selected"]');
-        return $('#preferredTheme')
+        return $('option[value="1"][selected="selected"]');
+        //return $('#preferredTheme')
     }
 
     get languagesDisplayMenu () {
