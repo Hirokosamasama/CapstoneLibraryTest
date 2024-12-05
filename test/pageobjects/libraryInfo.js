@@ -69,10 +69,6 @@ class LibraryInfo extends Base {
         return $('[aria-label="Volunteer (opens in a new window)"]')
     }
 
-
-
-
-
     
 
     async testLibraryInfoMenu() {
@@ -87,6 +83,8 @@ class LibraryInfo extends Base {
         await this.open();
         await expect(this.libraryHeaderLogo).toBeExisting();
         await this.libraryInfoMenu.click();
+        //await browser.pause(3000)
+        await this.faqsLink.waitForDisplayed({ timeout: 3000 });
         await this.faqsLink.click();
         expect(browser).toHaveUrl('https://library.orem.gov/libraryfaq')
     }
@@ -95,6 +93,7 @@ class LibraryInfo extends Base {
         await this.open();
         await expect(this.libraryHeaderLogo).toBeExisting();
         await this.libraryInfoMenu.click();
+        await this.artCenterPassesLink.waitForDisplayed({ timeout: 3000 });
         await this.artCenterPassesLink.click();
         expect(browser).toHaveUrl('https://oremlibrary.org/general-reference/nacpasses/');
         browser.switchWindow('library.orem.gov');
@@ -105,6 +104,7 @@ class LibraryInfo extends Base {
         await this.open();
         await expect(this.libraryHeaderLogo).toBeExisting();
         await this.libraryInfoMenu.click();
+        await this.bookGroupSetsLink.waitForDisplayed({ timeout: 3000 });
         await this.bookGroupSetsLink.click();
         expect(browser).toHaveUrl('https://library.orem.gov/bookgroup')
     }
@@ -113,6 +113,7 @@ class LibraryInfo extends Base {
         await this.open();
         await expect(this.libraryHeaderLogo).toBeExisting();
         await this.libraryInfoMenu.click();
+        await this.helpAndHowTosLink.waitForDisplayed({ timeout: 3000 });
         await this.helpAndHowTosLink.click();
         expect(browser).toHaveUrl('https://library.orem.gov/howto')
     }
@@ -121,6 +122,7 @@ class LibraryInfo extends Base {
         await this.open();
         await expect(this.libraryHeaderLogo).toBeExisting();
         await this.libraryInfoMenu.click();
+        await this.interlibraryLoanLink.waitForDisplayed({ timeout: 3000 });
         await this.interlibraryLoanLink.click();
         expect(browser).toHaveUrl('https://library.orem.gov/ill')
     }
@@ -129,6 +131,7 @@ class LibraryInfo extends Base {
         await this.open();
         await expect(this.libraryHeaderLogo).toBeExisting();
         await this.libraryInfoMenu.click();
+        await this.libraryCardsAccountLink.waitForDisplayed({ timeout: 3000 });
         await this.libraryCardsAccountLink.click();
         expect(browser).toHaveUrl('https://library.orem.gov/librarycardsandaccounts')
     }
@@ -137,22 +140,25 @@ class LibraryInfo extends Base {
         await this.open();
         await expect(this.libraryHeaderLogo).toBeExisting();
         await this.libraryInfoMenu.click();
+        await this.libraryHallLink.waitForDisplayed({ timeout: 3000 });
         await this.libraryHallLink.click();
         expect(browser).toHaveUrl('https://library.orem.gov/LibraryHall')
     }
 
-  /* async testmakerspaceLink() {
+    async testmakerspaceLink() {
         await this.open();
         await expect(this.libraryHeaderLogo).toBeExisting();
         await this.libraryInfoMenu.click();
+        await this.makerspaceLink.waitForDisplayed({ timeout: 3000 });
         await this.makerspaceLink.click();
         expect(browser).toHaveUrl('https://library.orem.gov/makerspace')
     }
 
-    async testpERCLink() {
+   async testpERCLink() {
         await this.open();
         await expect(this.libraryHeaderLogo).toBeExisting();
         await this.libraryInfoMenu.click();
+        await this.pERCLink.waitForDisplayed({ timeout: 3000 });
         await this.pERCLink.click();
         expect(browser).toHaveUrl('https://library.orem.gov/PERC')
     }
@@ -161,6 +167,7 @@ class LibraryInfo extends Base {
         await this.open();
         await expect(this.libraryHeaderLogo).toBeExisting();
         await this.libraryInfoMenu.click();
+        await this.policiesLink.waitForDisplayed({ timeout: 3000 });
         await this.policiesLink.click();
         expect(browser).toHaveUrl('https://library.orem.gov/policy')
     }
@@ -169,6 +176,7 @@ class LibraryInfo extends Base {
         await this.open();
         await expect(this.libraryHeaderLogo).toBeExisting();
         await this.libraryInfoMenu.click();
+        await this.purchaseRequestsLink.waitForDisplayed({ timeout: 3000 });
         await this.purchaseRequestsLink.click();
         expect(browser).toHaveUrl('https://library.orem.gov/purchaserequests')
     }
@@ -177,6 +185,7 @@ class LibraryInfo extends Base {
         await this.open();
         await expect(this.libraryHeaderLogo).toBeExisting();
         await this.libraryInfoMenu.click();
+        await this.stateLibraryBookLink.waitForDisplayed({ timeout: 3000 });
         await this.stateLibraryBookLink.click();
         expect(browser).toHaveUrl('https://library.orem.gov/WebBuilder/WebResource?id=86')
     }
@@ -185,9 +194,10 @@ class LibraryInfo extends Base {
         await this.open();
         await expect(this.libraryHeaderLogo).toBeExisting();
         await this.libraryInfoMenu.click();
+        await this.volunteerLink.waitForDisplayed({ timeout: 3000 });
         await this.volunteerLink.click();
         expect(browser).toHaveUrl('https://library.orem.gov/volunteering')
-    }*/
+    }
 
 
 

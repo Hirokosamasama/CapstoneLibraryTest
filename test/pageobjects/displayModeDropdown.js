@@ -1,4 +1,4 @@
-import { $ } from '@wdio/globals'
+import { $, browser } from '@wdio/globals'
 import Base from '../pageobjects/base.js';
 
 
@@ -63,8 +63,10 @@ class displayModeDropdown extends Base {
         await this.displayModeDropdownAccessibleTheme.click();
         await this.updateDisplaySetting.click();
         await this.closeButtonLD.click();
+        await browser.refresh()
         await this.languagesDisplayMenu.click();
         //await this.displayModeDropdownmenu.click();
+        await this.displayModeDropdownAccessibleThemeSelected.waitForDisplayed({ timeout: 3000 });
         await expect(this.displayModeDropdownAccessibleThemeSelected).toBeExisting();
         await this.closeButtonLD.click();
         const color = await this.menuBand.getCSSProperty('color');
@@ -78,8 +80,10 @@ class displayModeDropdown extends Base {
         await this.displayModeDropdownDarkTheme.click();
         await this.updateDisplaySetting.click();
         await this.closeButtonLD.click();
+        //await browser.refresh()
         await this.languagesDisplayMenu.click();
         //await this.displayModeDropdownmenu.click();
+        await this.displayModeDropdownDarkThemeselected.waitForDisplayed({ timeout: 3000 });
         await expect(this.displayModeDropdownDarkThemeselected).toBeExisting();
         await this.closeButtonLD.click();
         const color = await this.menuBand.getCSSProperty('color');
@@ -93,8 +97,10 @@ class displayModeDropdown extends Base {
         await this.displayModeDropdownDefault.click();
         await this.updateDisplaySetting.click();
         await this.closeButtonLD.click();
+        //await browser.refresh()
         await this.languagesDisplayMenu.click();
         //await this.displayModeDropdownmenu.click();
+        await this.displayModeDropdownDefaultselected.waitForDisplayed({ timeout: 3000 });
         await expect(this.displayModeDropdownDefaultselected).toBeExisting();
         await this.closeButtonLD.click();
         const color = await this.menuBand.getCSSProperty('color');
