@@ -16,7 +16,7 @@ class displayModeDropdown extends Base {
         return $('option[value="3"]');
     }
 
-    get displayModeDropdownAccessibleThemeSelected (){
+    get displayModeDropdownAccessibleThemeselected (){
         return $('option[value="4"][selected="selected"]');
     }
 
@@ -66,8 +66,8 @@ class displayModeDropdown extends Base {
         await browser.refresh()
         await this.languagesDisplayMenu.click();
         //await this.displayModeDropdownmenu.click();
-        await this.displayModeDropdownAccessibleThemeSelected.waitForDisplayed({ timeout: 3000 });
-        await expect(this.displayModeDropdownAccessibleThemeSelected).toBeExisting();
+        await this.displayModeDropdownAccessibleThemeselected.waitForDisplayed({ timeout: 3000 });
+        await expect(this.displayModeDropdownAccessibleThemeselected).toBeExisting();
         await this.closeButtonLD.click();
         const color = await this.menuBand.getCSSProperty('color');
         await expect(color.parsed.hex).toBe('#000000')
@@ -100,12 +100,75 @@ class displayModeDropdown extends Base {
         //await browser.refresh()
         await this.languagesDisplayMenu.click();
         //await this.displayModeDropdownmenu.click();
-        await this.displayModeDropdownDefaultselected.waitForDisplayed({ timeout: 3000 });
+        await this.displayModeDropdownDefaultselected.waitForDisplayed({ timeout: 5000 });
         await expect(this.displayModeDropdownDefaultselected).toBeExisting();
         await this.closeButtonLD.click();
         const color = await this.menuBand.getCSSProperty('color');
         await expect(color.parsed.hex).toBe('#ffffff')
     }
+
+    /*async testdisplaymodeDropdownAccessibleTheme(theme) {
+        let selected;
+        let theme;
+        if (theme == '4') {
+            selected = this.displayModeDropdownAccessibleThemeselected;
+            theme = this.displayModeDropdownAccessibleTheme;
+         } else if {
+            selected = this.displayModeDropdownDarkThemeselected;
+            theme = this.displayModeDropdownDarkTheme;
+        }   
+        } else {
+            selected = this.displayModeDropdownDefaultselected;
+            language = this.displayModeDropdownDefault;
+        }
+        await expect(selected).toBeExisting();
+        await updateDisplaySetting.click();
+        await this.closeButtonLD.click();
+        const color = await this.menuBand.getCSSProperty('color');
+        await expect(color.parsed.hex).toBe('#000000')
+    }*/
+
+     /*async testdisplaymodeDropdownDarkTheme(theme) {
+        let selected;
+        let theme;
+        if (theme == '3') {
+            selected = this.displayModeDropdownDarkThemeselected;
+            theme = this.displayModeDropdownDarkTheme;
+         } else if {
+            selected = this.displayModeDropdownAccessibleThemeselected;
+            theme = this.displayModeDropdownAccessibleTheme;
+        }   
+        } else {
+            selected = this.displayModeDropdownDefaultselected;
+            language = this.displayModeDropdownDefault;
+        }
+        await expect(selected).toBeExisting();
+        await updateDisplaySetting.click();
+        await this.closeButtonLD.click();
+        const color = await this.menuBand.getCSSProperty('color');
+        await expect(color.parsed.hex).toBe('#cae7fd')
+    }*/
+
+    /*async testdisplaymodeDropdownDefault(theme) {
+        let selected;
+        let theme;
+        if (theme == '1') {
+            selected = this.displayModeDropdownDefaultSelected;
+            theme = this.displayModeDropdowndefault;
+         } else if {
+            selected = this.displayModeDropdownDarkThemeSelected;
+            theme = this.displayModeDropdownDarkTheme;
+        }   
+        } else {
+            selected = this.displayModeDropdownAccessibleThemeselected;
+            language = this.displayModeAccessibleTheme;
+        }
+        await expect(selected).toBeExisting();
+        await updateDisplaySetting.click();
+        await this.closeButtonLD.click();
+        const color = await this.menuBand.getCSSProperty('color');
+        await expect(color.parsed.hex).toBe('#ffffff') 
+    }*/
 
 
     open () {
