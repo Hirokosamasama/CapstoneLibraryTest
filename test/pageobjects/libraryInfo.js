@@ -62,14 +62,12 @@ class LibraryInfo extends Base {
     }
 
     get stateLibraryBookLink(){
-        return $('[aria-label="State Library Book (opens in a new window)"]')
+        return $('[aria-label="State Library Book Buzz (opens in a new window)"]')
     }
 
     get volunteerLink(){
         return $('[aria-label="Volunteer (opens in a new window)"]')
     }
-
-    
 
     async testLibraryInfoMenu() {
         await this.open();
@@ -79,7 +77,42 @@ class LibraryInfo extends Base {
         await expect(this.dropdownMenu).toBeExisting();
     }
 
-    async testFaqsLink() {
+    dropdownMenuOptions = [
+        {options: 'FAQs', selector: () => this.faqsLink, url: 'https://library.orem.gov/libraryfaq'},
+        {options: 'Art Center Passes', selector: () => this.artCenterPassesLink, url: 'https://oremlibrary.org/general-reference/nacpasses/'},
+        {options: 'Book Group Sets', selector: () => this.bookGroupSetsLink, url: 'https://library.orem.gov/bookgroup'},
+        {options: 'Help & How Tos', selector: () => this.helpAndHowTosLink, url: 'https://library.orem.gov/howto'},
+        {options: 'Interlibrary Loan', selector: () => this.interlibraryLoanLink, url: 'https://library.orem.gov/ill'},
+        {options: 'Library Cards & Accounts', selector: () => this.libraryCardsAccountLink, url: 'https://library.orem.gov/librarycardsandaccounts'},
+        {options: 'Library Hall', selector: () => this.libraryHallLink, url: 'https://library.orem.gov/LibraryHall'},
+        {options: 'Makerspace', selector: () => this.makerspaceLink, url: 'https://library.orem.gov/makerspace'},
+        {options: 'PERC', selector: () => this.pERCLink, url: 'https://library.orem.gov/PERC'},
+        {options: 'Policies', selector: () => this.policiesLink, url: 'https://library.orem.gov/policy'},
+        {options: 'Purchase Requests', selector: () => this.purchaseRequestsLink, url: 'https://library.orem.gov/purchaserequests'},
+        {options: 'State Library Book Buzz', selector: () => this.stateLibraryBookLink, url: 'https://library.orem.gov/WebBuilder/WebResource?id=86'},
+        {options: 'Volunteer', selector: () => this.volunteerLink, url: 'https://library.orem.gov/volunteering'}
+    ];
+
+    async testdropdownMenuOptions() {
+        //await this.open();
+        for (const optionInfo of this.dropdownMenuOptions) {//loop commends
+            console.log('Processing ' + optionInfo.options)
+            await this.libraryInfoMenu.click();
+            //await browser.pause(3000)
+            await optionInfo.selector().waitForDisplayed({ timeout: 3000 });
+            await optionInfo.selector().moveTo();
+            await optionInfo.selector().click();
+            expect(browser).toHaveUrl(optionInfo.url);
+            if (optionInfo.options == 'Art Center Passes'){//go to external site
+                browser.switchWindow('library.orem.gov');
+            }
+        }
+    }
+
+
+
+
+    /*async testFaqsLink() {
         await this.open();
         await expect(this.libraryHeaderLogo).toBeExisting();
         await this.libraryInfoMenu.click();
@@ -99,7 +132,6 @@ class LibraryInfo extends Base {
         browser.switchWindow('library.orem.gov');
     }
 
-   
     async testBookGroupSetsLink() {
         await this.open();
         await expect(this.libraryHeaderLogo).toBeExisting();
@@ -142,6 +174,7 @@ class LibraryInfo extends Base {
         await this.libraryInfoMenu.click();
         await this.libraryHallLink.waitForDisplayed({ timeout: 3000 });
         await this.libraryHallLink.click();
+        await browser.back()
         expect(browser).toHaveUrl('https://library.orem.gov/LibraryHall')
     }
 
@@ -197,10 +230,7 @@ class LibraryInfo extends Base {
         await this.volunteerLink.waitForDisplayed({ timeout: 3000 });
         await this.volunteerLink.click();
         expect(browser).toHaveUrl('https://library.orem.gov/volunteering')
-    }
-
-
-
+    }*/
 
     
     open () {

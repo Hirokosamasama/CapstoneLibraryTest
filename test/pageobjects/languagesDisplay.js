@@ -60,7 +60,7 @@ class LanguagesDisplay extends Base {
         await expect(this.displaySettingLabel).toBeExisting();
     }
 
-    async testLanguageDisplayDropdown(lang) {
+    async testLanguageDisplayDropdown(lang) {//in the loop, it runs twice, see the test page, one is for if, one is for else.
         let selected;
         let language;
         if (lang == 'es') {

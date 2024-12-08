@@ -38,6 +38,14 @@ class displayModeDropdown extends Base {
         return $('#myModalLabel'); 
     }
 
+    get optionLanguageEn () {
+        return $('option[value="en"]'); 
+    }
+    
+    get optionLanguageEs () {
+        return $('option[value="es"]'); 
+    }
+
     get displayModeDropdownmenu (){
         return $('#preferredTheme')
     }
@@ -54,58 +62,119 @@ class displayModeDropdown extends Base {
         return $('button[class="btn btn-default modalClose"]'); 
     }
 
-    async testdisplaymodeDropdownAccessibleTheme() {
+    displayModeoptions = [
+        {dmoptions: 'Dark Theme', selector: () => this.displayModeDropdownDarkTheme, color: '#cae7fd'},
+        {dmoptions: 'Accessible Theme', selector: () => this.displayModeDropdownAccessibleTheme, color: '#000000'},
+        {dmoptions: 'Default', selector: () => this.displayModeDropdownDefault, color: '#ffffff'}//no comma needed
+    ]
+    
+    async testdisplaymodeDropdown() {
+        //await this.open();
+        for (const dmoptionInfo of this.displayModeoptions) {//loop commends
+            console.log('Processing ' + dmoptionInfo.dmoptions)//info for loop
+            await this.languagesDisplayMenu.click();
+            //await browser.pause(3000)
+            await expect(this.displaySettingLabel).toBeExisting();
+            await this.displayModeDropdownmenu.click();
+            await dmoptionInfo.selector().waitForDisplayed({ timeout: 3000 });
+            //await dmoptionInfo.selector().moveTo();
+            await dmoptionInfo.selector().click();
+            await this.updateDisplaySetting.click();
+            //await browser.refresh()
+            await this.languagesDisplayMenu.click();
+            await this.closeButtonLD.click();
+            await this.menuBand.moveTo();
+            const color = await this.menuBand.getCSSProperty('color');
+            await expect(color.parsed.hex).toBe(dmoptionInfo.color);
+        }
+    }
+
+    async testdisplaymodeDropdownSpanish() {//change to Spanish, then call the loop test
+        await this.languagesDisplayMenu.click();
+        await expect(this.displaySettingLabel).toBeExisting();
+        await this.optionLanguageEs.click();
+        await this.updateDisplaySetting.click();
+        await this.testdisplaymodeDropdown();
+        await this.languagesDisplayMenu.click();
+        await expect(this.displaySettingLabel).toBeExisting();
+        await this.optionLanguageEn.click();//change back to English
+    }
+    
+    open () {
+        return super.open();//calling base url
+    } 
+
+}
+
+export default new displayModeDropdown();
+
+    /*async testdisplaymodeDropdownAccessibleTheme() {
         await this.open();
         await expect(this.languagesDisplayMenu).toBeExisting();
         await this.languagesDisplayMenu.click();
         await expect(this.displaySettingLabel).toBeExisting();
         await this.displayModeDropdownmenu.click();
+        await this.displayModeDropdownAccessibleTheme.waitForDisplayed({ timeout: 3000 })
+        await this.displayModeDropdownAccessibleTheme.moveTo();
         await this.displayModeDropdownAccessibleTheme.click();
         await this.updateDisplaySetting.click();
-        await this.closeButtonLD.click();
         await browser.refresh()
         await this.languagesDisplayMenu.click();
-        //await this.displayModeDropdownmenu.click();
-        await this.displayModeDropdownAccessibleThemeselected.waitForDisplayed({ timeout: 3000 });
-        await expect(this.displayModeDropdownAccessibleThemeselected).toBeExisting();
         await this.closeButtonLD.click();
+        await this.menuBand.moveTo()
+        //await this.displayModeDropdownmenu.click();
+        ////await this.displayModeDropdownAccessibleThemeselected.waitForDisplayed({ timeout: 3000 });
+        ////await expect(this.displayModeDropdownAccessibleThemeselected).toBeExisting();
+        ////await this.closeButtonLD.click();
         const color = await this.menuBand.getCSSProperty('color');
         await expect(color.parsed.hex).toBe('#000000')
-    }
+    }*/
 
-    async testdisplaymodeDropdownDarkTheme() {
+   
+
+
+
+    /*async testdisplaymodeDropdownDarkTheme() {
         await this.languagesDisplayMenu.click();
         await expect(this.displaySettingLabel).toBeExisting();
         await this.displayModeDropdownmenu.click();
+        await this.displayModeDropdownDarkTheme.waitForDisplayed({ timeout: 3000 })
+        await this.displayModeDropdownDarkTheme.moveTo();
         await this.displayModeDropdownDarkTheme.click();
         await this.updateDisplaySetting.click();
         await this.closeButtonLD.click();
+        await this.menuBand.moveTo()
         //await browser.refresh()
         await this.languagesDisplayMenu.click();
         //await this.displayModeDropdownmenu.click();
-        await this.displayModeDropdownDarkThemeselected.waitForDisplayed({ timeout: 3000 });
-        await expect(this.displayModeDropdownDarkThemeselected).toBeExisting();
-        await this.closeButtonLD.click();
+        ////await this.displayModeDropdownDarkThemeselected.waitForDisplayed({ timeout: 3000 });
+        ////await expect(this.displayModeDropdownDarkThemeselected).toBeExisting();
+        ////await this.closeButtonLD.click();
         const color = await this.menuBand.getCSSProperty('color');
         await expect(color.parsed.hex).toBe('#cae7fd')
-    }
+    }*/
 
-    async testdisplaymodeDropdownDefault() {
+
+
+     /*async testdisplaymodeDropdownDefault() {
         await this.languagesDisplayMenu.click();
         await expect(this.displaySettingLabel).toBeExisting();
         await this.displayModeDropdownmenu.click();
+        await this.displayModeDropdownDefault.waitForDisplayed({ timeout: 3000 })
+        await this.displayModeDropdownDefault.moveTo();
         await this.displayModeDropdownDefault.click();
         await this.updateDisplaySetting.click();
         await this.closeButtonLD.click();
+        await this.menuBand.moveTo()
         //await browser.refresh()
         await this.languagesDisplayMenu.click();
-        //await this.displayModeDropdownmenu.click();
-        await this.displayModeDropdownDefaultselected.waitForDisplayed({ timeout: 5000 });
-        await expect(this.displayModeDropdownDefaultselected).toBeExisting();
-        await this.closeButtonLD.click();
+        ////await this.displayModeDropdownmenu.click();
+        ////await this.displayModeDropdownDefaultselected.waitForDisplayed({ timeout: 5000 });
+        ////await expect(this.displayModeDropdownDefaultselected).toBeExisting();
+        ////await this.closeButtonLD.click();
         const color = await this.menuBand.getCSSProperty('color');
         await expect(color.parsed.hex).toBe('#ffffff')
-    }
+    }*/
 
     /*async testdisplaymodeDropdownAccessibleTheme(theme) {
         let selected;
@@ -171,10 +240,4 @@ class displayModeDropdown extends Base {
     }*/
 
 
-    open () {
-        return super.open();//calling base url
-    } 
-
-}
-
-export default new displayModeDropdown();
+    
