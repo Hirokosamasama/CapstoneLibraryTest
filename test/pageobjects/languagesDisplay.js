@@ -1,25 +1,10 @@
 import { $ } from '@wdio/globals'
 import Base from '../pageobjects/base.js';
-// import LibraryInfo from '../pageobjects/libraryInfo.js';
-import { browser } from '@wdio/globals';
+
 /**
  * sub page containing specific selectors and methods for a specific page
  */
 class LanguagesDisplay extends Base {
-    /**
-     * define selectors using getter methods
-     */
-    get languagesDisplayMenu () {
-        return $('#theme-selection-dropdown'); 
-    }
-
-    get closeButtonLD () {
-        return $('button[class="btn btn-default modalClose"]'); 
-    }
-
-    get displaySettingLabel () {
-        return $('#myModalLabel'); 
-    }
 
     get languageToDisplayCatalogIn(){
         return 
@@ -27,14 +12,6 @@ class LanguagesDisplay extends Base {
 
     get preferredLanguageDropdownmenu () {
         return $('#preferredLanguage'); 
-    }
-
-    get optionLanguageEn () {
-        return $('option[value="en"]'); 
-    }
-    
-    get optionLanguageEs () {
-        return $('option[value="es"]'); 
     }
 
     get optionLanguageEnSelected () {
@@ -45,16 +22,12 @@ class LanguagesDisplay extends Base {
         return $('option[value="es"][selected="selected"]'); 
     }
 
-    get updateDisplaySetting (){
-        return $('#updateDisplaySettings')
-    }
-
     get searchSource(){
         return $('#searchSource')
     }
 
     async testLanguageDisplayMenu() {
-        await this.open();
+        await this.libraryURL();
         await expect(this.languagesDisplayMenu).toBeExisting();
         await this.languagesDisplayMenu.click();
         await expect(this.displaySettingLabel).toBeExisting();
@@ -88,31 +61,16 @@ class LanguagesDisplay extends Base {
             expect.stringContaining(text))
     }
 
-
-    open () {
-        return super.open();//calling base url
-    } 
-   
-    
-
-   
-
-
-
-
-
- //test for hamburger menu exist and shopping cart exist, postive test, Functional Test
-// async testHamburgermenu(){
-//     await this.open()
-//     await LoginPage.login('standard_user', 'secret_sauce');
-//     await expect(this.shoppingCart).toBeExisting();
-//     await this.openHamburgerMenu();
-//     await expect(this.allItemsLink).toBeExisting();
-//     await expect(this.aboutLink).toBeExisting();
-//     await expect(this.logoutLink).toBeExisting();
-//     await expect(this.resetAppStateLink).toBeExisting();
-// }
-
+    async testLanguageDisplayEnglishAndSpanish(){
+        const spanish = 'es'
+        const english = 'en'
+        const languages = [{drop: english, close: spanish}, {drop: spanish, close: english}]//Eng to Spanish, and Spanish to English
+        for (const lang of languages) {
+            await this.testLanguageDisplayMenu();//Language Display test
+            await this.testLanguageDisplayDropdown(lang.drop); //expected language => new language run twoice
+            await this.testLanguageDisplayCloseButton(lang.close); //new language text, verify and close
+        }
+    }
 
 }
 export default new LanguagesDisplay();
