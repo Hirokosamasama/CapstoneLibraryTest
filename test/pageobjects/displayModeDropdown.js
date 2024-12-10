@@ -4,30 +4,8 @@ import Base from '../pageobjects/base.js';
 
 class displayModeDropdown extends Base {
 
-    get displayModeDropdownDefault () {
-        return $('option[value="1"]'); 
-    }
-
-    get displayModeDropdownAccessibleTheme (){
-        return $('option[value="4"]');
-    }
-
-    get displayModeDropdownDarkTheme (){
-        return $('option[value="3"]');
-    }
-
-    get displayModeDropdownAccessibleThemeselected (){
-        return $('option[value="4"][selected="selected"]');
-    }
-
-    get displayModeDropdownDarkThemeselected (){
-        return $('option[value="3"][selected="selected"]');
-        
-    }
-
-    get displayModeDropdownDefaultselected (){
-        return $('option[value="1"][selected="selected"]');
-    
+    displayModeDropdownTheme(value){
+        return $(`option[value="${value}"]`); 
     }
 
     get displaySettingLabel () {
@@ -42,23 +20,23 @@ class displayModeDropdown extends Base {
         return $('[class="menu-section menu-section-left"]')
     }
 
-
     displayModeoptions = [
-        {dmoptions: 'Dark Theme', selector: () => this.displayModeDropdownDarkTheme, color: '#cae7fd'},
-        {dmoptions: 'Accessible Theme', selector: () => this.displayModeDropdownAccessibleTheme, color: '#000000'},
-        {dmoptions: 'Default', selector: () => this.displayModeDropdownDefault, color: '#ffffff'}//no comma needed
+        {dmoptions: 'Dark Theme', selector: this.displayModeDropdownTheme, color: '#cae7fd', value: '3'},
+        {dmoptions: 'Accessible Theme', selector: this.displayModeDropdownTheme, color: '#000000', value: '4'},
+        {dmoptions: 'Default', selector: this.displayModeDropdownTheme, color: '#ffffff', value: '1'}//no comma needed
     ]
     
     async testdisplaymodeDropdown() {
-        //await this.open();
+        //await this.libraryURL();
         for (const dmoptionInfo of this.displayModeoptions) {//loop commends
+            const value = dmoptionInfo.value;
             await this.languagesDisplayMenu.click();
             //await browser.pause(3000)
             await expect(this.displaySettingLabel).toBeExisting();
             await this.displayModeDropdownmenu.click();
-            await dmoptionInfo.selector().waitForDisplayed({ timeout: 3000 });
-            //await dmoptionInfo.selector().moveTo();
-            await dmoptionInfo.selector().click();
+            await dmoptionInfo.selector(value).waitForDisplayed({ timeout: 3000 });
+            //await dmoptionInfo.selector(value).moveTo();
+            await dmoptionInfo.selector(value).click();
             await this.updateDisplaySetting.click();
             //await browser.refresh()
             await this.languagesDisplayMenu.click();

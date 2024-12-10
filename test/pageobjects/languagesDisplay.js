@@ -71,6 +71,6 @@ class LanguagesDisplay extends Base {
             await this.testLanguageDisplayCloseButton(lang.close); //new language text, verify and close
         }
     }
-
 }
+
 export default new LanguagesDisplay();

@@ -94,7 +94,7 @@ class LibraryInfo extends Base {
     ];
 
     async testdropdownMenuOptions() {
-        //await this.open();
+        //await this.libraryURL();
         for (const optionInfo of this.dropdownMenuOptions) {//loop commends
             await this.libraryInfoMenu.click();
             //await browser.pause(3000)
