@@ -17,7 +17,6 @@ class LibraryInfo extends Base {
     }
 
     get faqsLink () {
-    //return $('a[href="/libraryfaq"]'); 
         return $('=FAQs'); 
     }
     
@@ -94,15 +93,13 @@ class LibraryInfo extends Base {
     ];
 
     async testdropdownMenuOptions() {
-        //await this.libraryURL();
-        for (const optionInfo of this.dropdownMenuOptions) {//loop commends
+        for (const optionInfo of this.dropdownMenuOptions) {
             await this.libraryInfoMenu.click();
-            //await browser.pause(3000)
             await optionInfo.selector().waitForDisplayed({ timeout: 3000 });
             await optionInfo.selector().moveTo();
             await optionInfo.selector().click();
             expect(browser).toHaveUrl(optionInfo.url);
-            if (optionInfo.options == 'Art Center Passes'){//go to external site
+            if (optionInfo.options == 'Art Center Passes'){
                 browser.switchWindow('library.orem.gov');
             }
         }

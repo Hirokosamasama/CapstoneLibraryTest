@@ -1,9 +1,6 @@
 import { $ } from '@wdio/globals'
 import Base from '../pageobjects/base.js';
 
-/**
- * sub page containing specific selectors and methods for a specific page
- */
 class LanguagesDisplay extends Base {
 
     get languageToDisplayCatalogIn(){
@@ -23,7 +20,7 @@ class LanguagesDisplay extends Base {
     }
 
     get searchSource(){
-        return $('#searchSource')
+        return $('#searchSource');
     }
 
     async testLanguageDisplayMenu() {
@@ -33,7 +30,7 @@ class LanguagesDisplay extends Base {
         await expect(this.displaySettingLabel).toBeExisting();
     }
 
-    async testLanguageDisplayDropdown(lang) {//in the loop, it runs twice, see the test page, one is for if, one is for else.
+    async testLanguageDisplayDropdown(lang) {
         let selected;
         let language;
         if (lang == 'es') {
@@ -64,11 +61,11 @@ class LanguagesDisplay extends Base {
     async testLanguageDisplayEnglishAndSpanish(){
         const spanish = 'es'
         const english = 'en'
-        const languages = [{drop: english, close: spanish}, {drop: spanish, close: english}]//Eng to Spanish, and Spanish to English
+        const languages = [{drop: english, close: spanish}, {drop: spanish, close: english}]
         for (const lang of languages) {
-            await this.testLanguageDisplayMenu();//Language Display test
-            await this.testLanguageDisplayDropdown(lang.drop); //expected language => new language run twoice
-            await this.testLanguageDisplayCloseButton(lang.close); //new language text, verify and close
+            await this.testLanguageDisplayMenu();
+            await this.testLanguageDisplayDropdown(lang.drop); 
+            await this.testLanguageDisplayCloseButton(lang.close); 
         }
     }
 }

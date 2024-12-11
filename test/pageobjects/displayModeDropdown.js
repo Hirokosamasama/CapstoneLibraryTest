@@ -4,41 +4,37 @@ import Base from '../pageobjects/base.js';
 
 class displayModeDropdown extends Base {
 
-    displayModeDropdownTheme(value){
-        return $(`option[value="${value}"]`); 
-    }
-
     get displaySettingLabel () {
         return $('#myModalLabel'); 
     }
 
     get displayModeDropdownmenu (){
-        return $('#preferredTheme')
+        return $('#preferredTheme');
     }
 
     get menuBand (){
-        return $('[class="menu-section menu-section-left"]')
+        return $('[class="menu-section menu-section-left"]');
     }
 
+    displayModeDropdownTheme(value){
+        return $(`option[value="${value}"]`); 
+    }
+    
     displayModeoptions = [
-        {dmoptions: 'Dark Theme', selector: this.displayModeDropdownTheme, color: '#cae7fd', value: '3'},
-        {dmoptions: 'Accessible Theme', selector: this.displayModeDropdownTheme, color: '#000000', value: '4'},
-        {dmoptions: 'Default', selector: this.displayModeDropdownTheme, color: '#ffffff', value: '1'}//no comma needed
+        {dmoptions: 'Dark Theme', color: '#cae7fd', value: '3'},
+        {dmoptions: 'Accessible Theme', color: '#000000', value: '4'},
+        {dmoptions: 'Default', color: '#ffffff', value: '1'}
     ]
     
     async testdisplaymodeDropdown() {
-        //await this.libraryURL();
-        for (const dmoptionInfo of this.displayModeoptions) {//loop commends
+        for (const dmoptionInfo of this.displayModeoptions) {
             const value = dmoptionInfo.value;
             await this.languagesDisplayMenu.click();
-            //await browser.pause(3000)
             await expect(this.displaySettingLabel).toBeExisting();
             await this.displayModeDropdownmenu.click();
-            await dmoptionInfo.selector(value).waitForDisplayed({ timeout: 3000 });
-            //await dmoptionInfo.selector(value).moveTo();
-            await dmoptionInfo.selector(value).click();
+            await this.displayModeDropdownTheme(value).waitForDisplayed({ timeout: 3000 });
+            await this.displayModeDropdownTheme(value).click();
             await this.updateDisplaySetting.click();
-            //await browser.refresh()
             await this.languagesDisplayMenu.click();
             await this.closeButtonLD.click();
             await this.menuBand.moveTo();
@@ -47,7 +43,7 @@ class displayModeDropdown extends Base {
         }
     }
 
-    async testdisplaymodeDropdownSpanish() {//change to Spanish, then call the loop test
+    async testdisplaymodeDropdownSpanish() {
         await this.languagesDisplayMenu.click();
         await expect(this.displaySettingLabel).toBeExisting();
         await this.optionLanguageEs.click();
@@ -55,7 +51,7 @@ class displayModeDropdown extends Base {
         await this.testdisplaymodeDropdown();
         await this.languagesDisplayMenu.click();
         await expect(this.displaySettingLabel).toBeExisting();
-        await this.optionLanguageEn.click();//change back to English
+        await this.optionLanguageEn.click();
     }
 }
 
