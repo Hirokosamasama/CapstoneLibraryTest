@@ -3,6 +3,9 @@ import { browser } from '@wdio/globals'
 
 export default class Base {
 
+    spanish = 'es'
+    english = 'en'
+
     get languagesDisplayMenu () {
         return $('#theme-selection-dropdown'); 
     }
@@ -15,18 +18,14 @@ export default class Base {
         return $('#myModalLabel'); 
     }
 
-    get optionLanguageEn () {
-        return $('option[value="en"]'); 
-    }
-    
-    get optionLanguageEs () {
-        return $('option[value="es"]'); 
-    }
-
     get updateDisplaySetting (){
         return $('#updateDisplaySettings')
     }
     
+    optionLanguage(lang){
+        return $(`option[value="${lang}"]`); 
+    }
+
     libraryURL () {
         return browser.url('https://library.orem.gov/')
     }

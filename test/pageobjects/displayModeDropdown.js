@@ -19,7 +19,7 @@ class displayModeDropdown extends Base {
     displayModeDropdownTheme(value){
         return $(`option[value="${value}"]`); 
     }
-    
+
     displayModeoptions = [
         {dmoptions: 'Dark Theme', color: '#cae7fd', value: '3'},
         {dmoptions: 'Accessible Theme', color: '#000000', value: '4'},
@@ -46,12 +46,12 @@ class displayModeDropdown extends Base {
     async testdisplaymodeDropdownSpanish() {
         await this.languagesDisplayMenu.click();
         await expect(this.displaySettingLabel).toBeExisting();
-        await this.optionLanguageEs.click();
+        await this.optionLanguage(this.spanish).click();
         await this.updateDisplaySetting.click();
         await this.testdisplaymodeDropdown();
         await this.languagesDisplayMenu.click();
         await expect(this.displaySettingLabel).toBeExisting();
-        await this.optionLanguageEn.click();
+        await this.optionLanguage(this.english).click();
     }
 }
 

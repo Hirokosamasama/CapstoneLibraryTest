@@ -11,16 +11,12 @@ class LanguagesDisplay extends Base {
         return $('#preferredLanguage'); 
     }
 
-    get optionLanguageEnSelected () {
-        return $('option[value="en"][selected="selected"]'); 
-    }
-
-    get optionLanguageEsSelected () {
-        return $('option[value="es"][selected="selected"]'); 
-    }
-
     get searchSource(){
         return $('#searchSource');
+    }
+
+    optionLanguageSelected(lang){
+        return $(`option[value="${lang}"][selected="selected"]`)
     }
 
     async testLanguageDisplayMenu() {
@@ -33,12 +29,11 @@ class LanguagesDisplay extends Base {
     async testLanguageDisplayDropdown(lang) {
         let selected;
         let language;
-        if (lang == 'es') {
-            selected = this.optionLanguageEsSelected;
-            language = this.optionLanguageEn;
+        selected = this.optionLanguageSelected(lang);
+        if (lang == this.spanish) {
+            language = this.optionLanguage(this.english);
         } else {
-            selected = this.optionLanguageEnSelected;
-            language = this.optionLanguageEs;
+            language = this.optionLanguage(this.spanish);
         }
         await expect(selected).toBeExisting();
         await language.click();
@@ -47,7 +42,7 @@ class LanguagesDisplay extends Base {
 
     async testLanguageDisplayCloseButton(lang) {
         let text;
-        if (lang == 'es') {
+        if (lang == this.spanish) {
             text = 'en Catálago bibliotecario';
         } else {
             text = 'in Library Catalog';
@@ -59,9 +54,7 @@ class LanguagesDisplay extends Base {
     }
 
     async testLanguageDisplayEnglishAndSpanish(){
-        const spanish = 'es'
-        const english = 'en'
-        const languages = [{drop: english, close: spanish}, {drop: spanish, close: english}]
+        const languages = [{drop: this.english, close: this.spanish}, {drop: this.spanish, close: this.english}]
         for (const lang of languages) {
             await this.testLanguageDisplayMenu();
             await this.testLanguageDisplayDropdown(lang.drop); 
