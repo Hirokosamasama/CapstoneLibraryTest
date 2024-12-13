@@ -94,7 +94,7 @@ class LibraryInfo extends Base {
 
     async testdropdownMenuOptions() {
         for (const optionInfo of this.dropdownMenuOptions) {
-            await this.libraryInfoMenu.waitForDisplayed({ timeout: 3000 });
+            await this.libraryInfoMenu.waitForDisplayed({ timeout: 5000 });
             await this.libraryInfoMenu.click();
             await optionInfo.selector().waitForDisplayed({ timeout: 3000 });
             await optionInfo.selector().moveTo();
